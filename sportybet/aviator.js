@@ -1,4 +1,4 @@
-const moves = ["1.01", "2.29", "2.17", "13.55"];
+const moves = ["1.01", "1.08", "10.25", "13.55"];
 
 
 const loadingBar = document.querySelector('.loading-bar');
