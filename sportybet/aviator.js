@@ -1,5 +1,7 @@
-const moves = ["1.15", "1.22", "20.94", "7.87", "5.73"];
+let moves = JSON.parse(localStorage.getItem("moves"));
 
+
+console.log(moves);
 
 const loadingBar = document.querySelector('.loading-bar');
 const loadingFill = document.querySelector('.loading-bar-fill');
@@ -12,6 +14,33 @@ const time = document.querySelector('.time');
 // preloader before site open
 const starBtns3 = document.querySelectorAll('#preloader3 .stars .star-btn');
 const starBtns4 = document.querySelectorAll('#preloader3 .stars2 .star-btn');
+
+// working on adding moves
+const openMove = document.querySelector('.open-move');
+const moveContainer = document.querySelector('.add-moves-contaner');
+const closeMove = document.querySelector('.close-move-btn');
+const addMoveBtn = document.querySelector('.add-move-btn');
+const moveInputs = document.querySelectorAll('.add-moves-input');
+
+// open move container
+openMove.addEventListener('click', () => {
+  moveContainer.classList.add('show-move-container');
+})
+// closing move container
+closeMove.addEventListener('click', () => {
+  moveContainer.classList.remove('show-move-container');
+})
+
+addMoveBtn.addEventListener('click', () => {
+  const movesValues = moveInputs;
+  moves = [];
+  movesValues.forEach((movesValue) => {
+    moves.push(movesValue.value);
+    movesValue.value = '';
+  })
+  moveContainer.classList.remove('show-move-container');
+  localStorage.setItem("moves", JSON.stringify(moves));
+})
 
 function changeColor3(target) {
   if (target < 1) {
@@ -115,7 +144,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 1000)
 })
 
-let value = 0;
+let value = -1;
 
 btn.addEventListener("click", () => {
   
@@ -135,3 +164,4 @@ btn.addEventListener("click", () => {
 
   loadingFill.style.transform = `translateX(${-100}%)`;
 })
+
